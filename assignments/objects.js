@@ -18,28 +18,51 @@ const example = {
 }
 
 // Write your intern objects here:
+function Employee (id,name,email,gender) {
+    this.id = id;
+    this.name = name;
+    this.email = email;
+    this.gender = gender;
+  
+};
 
+Employee.prototype.speak = function(){
+  return `${this.name} says Hello!`;
+}
+Employee.prototype.multiplyNums = function(num1,num2){
+  return num1 * num2;
+}
+
+const mitizi = new Employee(01,"Mitizi","mmelloy0@Psu.edu","F");
+const Kennan = new Employee(02,"Kennan","kdiben1@tinypic.com","M");
+const Keven = new Employee(03,"Keven","kmummery2@wikimedia.org","M");
+const Gannie = new Employee(03,"Gannie","gmartinson3@illinois.edu","M");
+const Antonietta = new Employee(03,"Antonietta","adaine5@samsung.com","F");
 
 // ==== Challenge 2: Reading Object Data ==== 
 // Once your objects are created, log out the following requests from HR into the console:
 
 // Mitzi's name
-
+console.log(mitizi.name);
 // Kennan's ID
-
+console.log(Kennan.id);
 // Keven's email
-
+console.log(Keven.email);
 // Gannie's name
-
+console.log(Gannie.name);
 // Antonietta's Gender
+console.log(Antonietta.gender);
+
+
+
 
 // ==== Challenge 3: Object Methods ==== 
 // Give Kennan the ability to say "Hello, my name is Kennan!" Use the console.log provided as a hint.
 // console.log(kennan.speak());
-
+console.log(Kennan.speak());
 // Antonietta loves math, give her the ability to multiply two numbers together and return the product. Use the console.log provided as a hint.
 //console.log(antonietta.multiplyNums(3,4));
-
+console.log(Antonietta.multiplyNums(3,4));
 // === Great work! === Head over to the the arrays.js. You may come back and attempt the Stretch Challenge once you have completed the challenges in arrays.js and function-conversion.js.
 
 // ==== Stretch Challenge: Nested Objects and the this keyword ==== 
@@ -49,16 +72,57 @@ const example = {
 // 3. Nest a grandchild object in the child object with properties for name and age.  The name will be Sam and the age will be 30
 // 4. Give each of the objects the ability to speak their names using the this keyword.
 
-const parent = {}
+
+function Person(name, age, child){
+  this.name = name;
+  this.age = age;
+  this.child = child;
+}
+Person.prototype.speak = function(){
+  return this.name;
+}
+const parent = new Person("Susan", 70, new Person("George",50, new Person("Sam",30)) );
+
+// const parent = {
+//   name: "Susan",
+//   age:70,
+//   child: {
+    
+//     name:"George",
+//     age:50,
+    
+    
+//     grandchild: {
+//       name:"Sam",
+//       age:30,
+      
+//     }
+//   },
+
+//   speak(){
+//     return this.name;
+//   }
+ 
+
+// };
+
+
+
+// Parent.prototype.speak = function(){
+//   return this.name;
+// }
 
 // Log the parent object's name
+console.log(parent.name);
 
 // Log the child's age
+console.log(parent.child.age);
 
 // Log the name and age of the grandchild
-
+console.log(parent.child.child.name, parent.child.child.age);
 // Have the parent speak
-
+console.log(parent.speak());
 // Have the child speak
-
+console.log(parent.child.speak());
 // Have the grandchild speak
+console.log(parent.child.child.speak());
